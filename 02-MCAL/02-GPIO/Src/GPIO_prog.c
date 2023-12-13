@@ -46,7 +46,7 @@ uint8_t GPIO_u8PinInit(const PinConfig_t* PinConfig)
 {
 	uint8_t Local_u8ErrorState=OK;
 	/*Check weather the pointer points to Null or Not*/
-	if(PinConfig !=NULL)
+	if(PinConfig != NULL)
 	{
 		/* * * * * Select GPIO Mode: Input, Output, Analog, AltFunc * * * * */
 		(GPIOx[PinConfig->Port]->GPIO_MODER) &=~(MODER_MASK<<(MODER_PIN_ACCESS* (PinConfig->PinNum)));

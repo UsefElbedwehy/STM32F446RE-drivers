@@ -7,4 +7,6 @@ typedef enum{
 	NULL_POINTER
 }ErrorState_t;
 
+#define NULL ((void *)0)
+
 #endif

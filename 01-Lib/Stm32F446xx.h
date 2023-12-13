@@ -82,7 +82,7 @@ typedef struct{
 	volatile uint32_t Reserved6;
 	volatile uint32_t RCC_AHB1LPENR;
 	volatile uint32_t RCC_AHB2LPENR;
-	volatile uint32_t RCC_AHB3ENR;
+	volatile uint32_t RCC_AHB3LENR;
 	volatile uint32_t RCC_Reserved7;
 	volatile uint32_t RCC_APB1LPENR;
 	volatile uint32_t RCC_APB2LPENR;
