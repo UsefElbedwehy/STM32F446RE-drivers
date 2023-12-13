@@ -121,13 +121,13 @@ typedef enum{
 * * * * * * * * * * * * * * * * *
 */
 typedef struct{
-	Port_t 				 Port;
-	Pin_t					 PinNum;
-	Mode_t				 Mode;
-	OutputSpeed_t	 Speed;
-	OutputType_t	 OutputType;
-	PullUpDown_t	 PullType;
-	AltFunc_t 			 AltFunc;
+	Port_t 		    Port;
+	Pin_t			PinNum;
+	Mode_t			Mode;
+	OutputSpeed_t	Speed;
+	OutputType_t	OutputType;
+	PullUpDown_t	PullType;
+	AltFunc_t 		AltFunc;
 	
 }PinConfig_t;
 /*
@@ -141,7 +141,7 @@ uint8_t GPIO_u8PinInit(const PinConfig_t* PinConfig);
                             GPIO SET PIN VALUE
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 */
-uint8_t GPIO_u8SetPinValue(Port_t	Port , Pin_t	PinNum , PinVal_t PinVal);
+uint8_t GPIO_u8SetPinValue(Port_t  Port , Pin_t  PinNum , PinVal_t PinVal);
 /*
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
                             GPIO TOGGLE PIN VALUE
