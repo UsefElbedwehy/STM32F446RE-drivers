@@ -1,6 +1,8 @@
 #ifndef  STM32F446XX_H_
 #define  STM32F446XX_H_ 
-
+/**************Core peripherals Base Addresses***************/
+#define	SYSTICK_ADDRESS_BASE		0xE000E010UL
+#define NVIC_BASE_ADDRESS 			0xE000E100UL			
 /**************Various Memory Base Addresses***************/
 #define SRAM_BASE_ADRRESS  					0x20000000UL
 #define FLASH_BASE_ADRRESS 					0x08000000UL
@@ -33,30 +35,6 @@
 /***************AHB2 Peripherals Base Addresses****************/
 
 /***************AHB3 Peripherals Base Addresses****************/
-
-/***************GPIO Register Definition Structure****************/
-typedef struct{
-	volatile uint32_t GPIO_MODER;			  /*GPIO PORT Mode Register*/
-	volatile uint32_t GPIO_OTYPE;             /*GPIO PORT Output Type Register*/
-	volatile uint32_t GPIO_OSPEEDER;      /*GPIO PORT Output Speed Register*/
-	volatile uint32_t GPIO_PUPDR;            /*GPIO PORT Pull Up/Down Register*/
-	volatile uint32_t GPIO_IDR;                /*GPIO PORT Input Data Register*/
-	volatile uint32_t GPIO_ODR;               /*GPIO PORT Output Data Register*/
-	volatile uint32_t GPIO_BSRR;             /*GPIO PORT Bit Set/Reset Register*/
-	volatile uint32_t GPIO_LCKR;             /*GPIO PORT Lock Register*/
-	volatile uint32_t GPIO_AFR[2];          /*GPIO PORT Alternative Function Register*/
-
-}GPIO_RegDef_t;
-
-/***************GPIO Register Definition ****************/
-#define GPIOA	   ((GPIO_RegDef_t*)GPIOA_BASE_ADDRESS)
-#define GPIOB      ((GPIO_RegDef_t*)GPIOB_BASE_ADDRESS)
-#define GPIOC      ((GPIO_RegDef_t*)GPIOC_BASE_ADDRESS)
-#define GPIOD      ((GPIO_RegDef_t*)GPIOD_BASE_ADDRESS)
-#define GPIOE      ((GPIO_RegDef_t*)GPIOE_BASE_ADDRESS)
-#define GPIOF      ((GPIO_RegDef_t*)GPIOF_BASE_ADDRESS)
-#define GPIOG      ((GPIO_RegDef_t*)GPIOG_BASE_ADDRESS)
-#define GPIOH      ((GPIO_RegDef_t*)GPIOH_BASE_ADDRESS)
 
 /***************RCC Register Definition Structure****************/
 typedef struct{
@@ -102,5 +80,57 @@ typedef struct{
 }RCC_RegDef_t;
 /***************RCC Register Definition ****************/
 #define RCC 		 ((RCC_RegDef_t*)RCC_BASE_ADDRESS)
+
+/***************GPIO Register Definition Structure****************/
+typedef struct{
+	volatile uint32_t GPIO_MODER;			  /*GPIO PORT Mode Register*/
+	volatile uint32_t GPIO_OTYPE;             /*GPIO PORT Output Type Register*/
+	volatile uint32_t GPIO_OSPEEDER;      /*GPIO PORT Output Speed Register*/
+	volatile uint32_t GPIO_PUPDR;            /*GPIO PORT Pull Up/Down Register*/
+	volatile uint32_t GPIO_IDR;                /*GPIO PORT Input Data Register*/
+	volatile uint32_t GPIO_ODR;               /*GPIO PORT Output Data Register*/
+	volatile uint32_t GPIO_BSRR;             /*GPIO PORT Bit Set/Reset Register*/
+	volatile uint32_t GPIO_LCKR;             /*GPIO PORT Lock Register*/
+	volatile uint32_t GPIO_AFR[2];          /*GPIO PORT Alternative Function Register*/
+
+}GPIO_RegDef_t;
+
+/***************GPIO Register Definition ****************/
+#define GPIOA	   ((GPIO_RegDef_t*)GPIOA_BASE_ADDRESS)
+#define GPIOB      ((GPIO_RegDef_t*)GPIOB_BASE_ADDRESS)
+#define GPIOC      ((GPIO_RegDef_t*)GPIOC_BASE_ADDRESS)
+#define GPIOD      ((GPIO_RegDef_t*)GPIOD_BASE_ADDRESS)
+#define GPIOE      ((GPIO_RegDef_t*)GPIOE_BASE_ADDRESS)
+#define GPIOF      ((GPIO_RegDef_t*)GPIOF_BASE_ADDRESS)
+#define GPIOG      ((GPIO_RegDef_t*)GPIOG_BASE_ADDRESS)
+#define GPIOH      ((GPIO_RegDef_t*)GPIOH_BASE_ADDRESS)
+/***************SYSTICK Register Definition Structure****************/
+typedef struct{
+	volatile uint32_t SYSTICK_CSR;   /*SysTick Control and Status Register-RW*/
+	volatile uint32_t SYSTICK_RVR;   /*SysTick Reload Value Register-RW*/
+	volatile uint32_t SYSTICK_CVR;   /*SysTick Current Value Register-RW*/
+	volatile uint32_t SYSTICK_CALIB; /*SysTick Calibration Value Register-RO*/
+
+}SYSTICK_Reg_t;
+/***************SYSTICK Register Definition ****************/
+#define SYSTICK 		((SYSTICK_Reg_t*)SYSTICK_ADDRESS_BASE)
+/***************NVIC Register Definition Structure****************/
+typedef struct{
+	volatile uint32_t NVIC_ISER[8];
+	volatile uint32_t RESERVED1[24];
+	volatile uint32_t NVIC_ICER[8];
+	volatile uint32_t RESERVED2[24];
+	volatile uint32_t NVIC_ISPR[8];
+	volatile uint32_t RESERVED3[24];
+	volatile uint32_t NVIC_ICPR[8];
+	volatile uint32_t RESERVED4[24];
+	volatile uint32_t NVIC_IABR[8];
+	volatile uint32_t RESERVED5[56];
+	volatile uint32_t NVIC_IPR[240];
+	volatile uint32_t RESERVED6[643];
+	volatile uint32_t NVIC_STIR;
+}NVIC_RegDef_t;
+/***************RCC Register Definition ****************/
+#define NVIC 		((NVIC_RegDef_t*)NVIC_BASE_ADDRESS)
 
 #endif
