@@ -1,12 +1,14 @@
 #ifndef  STM32F446XX_H_
 #define  STM32F446XX_H_ 
 /**************Core peripherals Base Addresses***************/
-#define	SYSTICK_ADDRESS_BASE		0xE000E010UL
-#define NVIC_BASE_ADDRESS 			0xE000E100UL			
+#define	SYSTICK_BASE_ADDRESS		0xE000E010UL
+#define NVIC_BASE_ADDRESS 			0xE000E100UL			/*NESTED VECTOR INTERRUPT CONTROL BASE ADDRESS*/
+#define SCB_BASE_ADDRESS			0xE000E008UL			/*SYSTEM CONTROL BLOCK BASE ADDRESS*/
+
 /**************Various Memory Base Addresses***************/
 #define SRAM_BASE_ADRRESS  					0x20000000UL
 #define FLASH_BASE_ADRRESS 					0x08000000UL
-#define  SYSTEM_MEMORY_BASE_ADRRESS 	    0x1FFF0000UL
+#define SYSTEM_MEMORY_BASE_ADRRESS 	  		0x1FFF0000UL
 /***************APB1 Peripherals Base Addresses****************/
 #define GPIOA_BASE_ADDRESS					0x40020000U      /*GENERAL PURPOSE INPUT OUTPOT (PORTA) BASE ADDRESS*/
 #define GPIOB_BASE_ADDRESS					0x40020400U      /*GENERAL PURPOSE INPUT OUTPOT (PORTB) BASE ADDRESS*/
@@ -113,7 +115,7 @@ typedef struct{
 
 }SYSTICK_Reg_t;
 /***************SYSTICK Register Definition ****************/
-#define SYSTICK 		((SYSTICK_Reg_t*)SYSTICK_ADDRESS_BASE)
+#define SYSTICK 		((SYSTICK_Reg_t*)SYSTICK_BASE_ADDRESS)
 /***************NVIC Register Definition Structure****************/
 typedef struct{
 	volatile uint32_t NVIC_ISER[8];
@@ -126,11 +128,37 @@ typedef struct{
 	volatile uint32_t RESERVED4[24];
 	volatile uint32_t NVIC_IABR[8];
 	volatile uint32_t RESERVED5[56];
-	volatile uint32_t NVIC_IPR[240];
+	volatile uint8_t NVIC_IPR[240];
 	volatile uint32_t RESERVED6[643];
 	volatile uint32_t NVIC_STIR;
 }NVIC_RegDef_t;
-/***************RCC Register Definition ****************/
+/***************NVIC Register Definition ****************/
 #define NVIC 		((NVIC_RegDef_t*)NVIC_BASE_ADDRESS)
+/***************SCB Register Definition Structure****************/
+typedef struct{
+	volatile uint32_t  SCB_ACTLR;    /* CPUID Base Register-RO*/
+	uint32_t  REVERSED0[829];
+	volatile uint32_t  SCB_CPUID;    /* CPUID Base Register-RO*/
+	volatile uint32_t  SCB_ICSR;     /* Interrupt Control and State Register-RW*/
+	volatile uint32_t  SCB_VTOR;     /* Vector Table Offset Register-RW*/
+	volatile uint32_t  SCB_AIRCR;    /* Application Interrupt and Reset Control Register-RW*/
+	volatile uint32_t  SCB_SCR;      /* System Control Register-RW*/
+	volatile uint32_t  SCB_CCR;      /* Configuration and Control Register-RW*/
+	volatile uint32_t  SCB_SHPR1;    /* System Handler Priority Register 1-RW*/
+	volatile uint32_t  SCB_SHPR2;    /* System Handler Priority Register 2-RW*/
+	volatile uint32_t  SCB_SHPR3;    /* System Handler Priority Register 3-RW*/
+	volatile uint32_t  SCB_SHCRS;    /* System Handler Control and State Register-RW*/
+	volatile uint8_t  SCB_MMSR;     /* MemManage Fault Status Register-RW*/
+	volatile uint8_t  SCB_BFSR;     /* BusFault Status Register-RW*/
+	volatile uint16_t  SCB_UFSR;     /* UsageFault Status Register-RW-RW*/
+	volatile uint32_t  SCB_HFSR;     /* HardFault Status Register-RW*/
+	uint32_t REVERSED1;
+	volatile uint32_t  SCB_MMAR;     /* MemManage Fault Address Register-RW*/
+	volatile uint32_t  SCB_BFAR;     /* BusFault Address Register-RW*/
+	volatile uint32_t  SCB_AFSR;     /* Auxiliary Fault Status Register-RW*/
+
+}SCB_RegDef_t;
+/***************SCB Register Definition ****************/
+#define SCB 		((SCB_RegDef_t*)SCB_BASE_ADDRESS)
 
 #endif
