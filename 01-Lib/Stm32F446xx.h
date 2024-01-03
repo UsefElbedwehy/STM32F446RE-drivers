@@ -9,30 +9,33 @@
 #define SRAM_BASE_ADRRESS  					0x20000000UL
 #define FLASH_BASE_ADRRESS 					0x08000000UL
 #define SYSTEM_MEMORY_BASE_ADRRESS 	  		0x1FFF0000UL
+
 /***************APB1 Peripherals Base Addresses****************/
-#define GPIOA_BASE_ADDRESS					0x40020000U      /*GENERAL PURPOSE INPUT OUTPOT (PORTA) BASE ADDRESS*/
-#define GPIOB_BASE_ADDRESS					0x40020400U      /*GENERAL PURPOSE INPUT OUTPOT (PORTB) BASE ADDRESS*/
-#define GPIOC_BASE_ADDRESS					0x40020800U      /*GENERAL PURPOSE INPUT OUTPOT (PORTC) BASE ADDRESS*/
-#define GPIOD_BASE_ADDRESS					0x40020C00U      /*GENERAL PURPOSE INPUT OUTPOT (PORTD) BASE ADDRESS*/
-#define GPIOE_BASE_ADDRESS		    		0x40021000U      /*GENERAL PURPOSE INPUT OUTPOT (PORTE) BASE ADDRESS*/
-#define GPIOF_BASE_ADDRESS		    		0x40021400U      /*GENERAL PURPOSE INPUT OUTPOT (PORTF) BASE ADDRESS*/
-#define GPIOG_BASE_ADDRESS					0x40021800U      /*GENERAL PURPOSE INPUT OUTPOT (PORTG) BASE ADDRESS*/
-#define GPIOH_BASE_ADDRESS					0x40021C00U      /*GENERAL PURPOSE INPUT OUTPOT (PORTH) BASE ADDRESS*/
-
-#define RCC_BASE_ADDRESS          			0x40023800U      /*RESET AND CLOCK CONTROL BASE ADDRESS*/
-
-#define USB_OTG_HS_BASE_ADDRESS				0x40040000U
-#define DMA2_BASE_ADDRESS					0x40026400U
-#define DMA1_BASE_ADDRESS					0x40026000U
-#define BKPSRAM_BASE_ADDRESS				0x40024000U
-#define FLASH_I_R_BASE_ADDRESS				0x40023C00U      /*FLASH INTERFACE REGISTER BASE ADDRESS*/
-#define CRC_BASE_ADDRESS					0x40023000U	   /*CYCLIC REDUNDANCY CHECH BASE ADDRESS*/
 
 /***************APB2 Peripherals Base Addresses****************/
+#define EXTI_BASE_ADDRESS					0x40013C00UL
+#define SYSCFG_BASE_ADDRESS					0x40013800UL
 
 /***************APB3 Peripherals Base Addresses****************/
 
 /***************AHB1 Peripherals Base Addresses****************/
+#define GPIOA_BASE_ADDRESS					0x40020000UL      /*GENERAL PURPOSE INPUT OUTPOT (PORTA) BASE ADDRESS*/
+#define GPIOB_BASE_ADDRESS					0x40020400UL      /*GENERAL PURPOSE INPUT OUTPOT (PORTB) BASE ADDRESS*/
+#define GPIOC_BASE_ADDRESS					0x40020800UL      /*GENERAL PURPOSE INPUT OUTPOT (PORTC) BASE ADDRESS*/
+#define GPIOD_BASE_ADDRESS					0x40020C00UL      /*GENERAL PURPOSE INPUT OUTPOT (PORTD) BASE ADDRESS*/
+#define GPIOE_BASE_ADDRESS		    		0x40021000UL      /*GENERAL PURPOSE INPUT OUTPOT (PORTE) BASE ADDRESS*/
+#define GPIOF_BASE_ADDRESS		    		0x40021400UL      /*GENERAL PURPOSE INPUT OUTPOT (PORTF) BASE ADDRESS*/
+#define GPIOG_BASE_ADDRESS					0x40021800UL      /*GENERAL PURPOSE INPUT OUTPOT (PORTG) BASE ADDRESS*/
+#define GPIOH_BASE_ADDRESS					0x40021C00UL      /*GENERAL PURPOSE INPUT OUTPOT (PORTH) BASE ADDRESS*/
+
+#define RCC_BASE_ADDRESS          			0x40023800UL      /*RESET AND CLOCK CONTROL BASE ADDRESS*/
+
+#define USB_OTG_HS_BASE_ADDRESS				0x40040000UL
+#define DMA2_BASE_ADDRESS					0x40026400UL
+#define DMA1_BASE_ADDRESS					0x40026000UL
+#define BKPSRAM_BASE_ADDRESS				0x40024000UL
+#define FLASH_I_R_BASE_ADDRESS				0x40023C00UL      /*FLASH INTERFACE REGISTER BASE ADDRESS*/
+#define CRC_BASE_ADDRESS					0x40023000UL	   /*CYCLIC REDUNDANCY CHECH BASE ADDRESS*/
 
 /***************AHB2 Peripherals Base Addresses****************/
 
@@ -80,6 +83,7 @@ typedef struct{
 	volatile uint32_t RCC_DCKCFGR2;
 
 }RCC_RegDef_t;
+
 /***************RCC Register Definition ****************/
 #define RCC 		 ((RCC_RegDef_t*)RCC_BASE_ADDRESS)
 
@@ -106,6 +110,7 @@ typedef struct{
 #define GPIOF      ((GPIO_RegDef_t*)GPIOF_BASE_ADDRESS)
 #define GPIOG      ((GPIO_RegDef_t*)GPIOG_BASE_ADDRESS)
 #define GPIOH      ((GPIO_RegDef_t*)GPIOH_BASE_ADDRESS)
+
 /***************SYSTICK Register Definition Structure****************/
 typedef struct{
 	volatile uint32_t SYSTICK_CSR;   /*SysTick Control and Status Register-RW*/
@@ -116,6 +121,7 @@ typedef struct{
 }SYSTICK_Reg_t;
 /***************SYSTICK Register Definition ****************/
 #define SYSTICK 		((SYSTICK_Reg_t*)SYSTICK_BASE_ADDRESS)
+
 /***************NVIC Register Definition Structure****************/
 typedef struct{
 	volatile uint32_t NVIC_ISER[8];
@@ -131,9 +137,11 @@ typedef struct{
 	volatile uint8_t NVIC_IPR[240];
 	volatile uint32_t RESERVED6[643];
 	volatile uint32_t NVIC_STIR;
+
 }NVIC_RegDef_t;
 /***************NVIC Register Definition ****************/
 #define NVIC 		((NVIC_RegDef_t*)NVIC_BASE_ADDRESS)
+
 /***************SCB Register Definition Structure****************/
 typedef struct{
 	volatile uint32_t  SCB_ACTLR;    /* CPUID Base Register-RO*/
@@ -160,5 +168,30 @@ typedef struct{
 }SCB_RegDef_t;
 /***************SCB Register Definition ****************/
 #define SCB 		((SCB_RegDef_t*)SCB_BASE_ADDRESS)
+
+/***************SYSCFG Register Definition Structure****************/
+typedef struct{
+	volatile uint32_t SYSCFG_MEMRMP;
+	volatile uint32_t SYSCFG_PMC;
+	volatile uint32_t SYSCFG_EXTICR[4];
+	volatile uint32_t SYSCFG_CMPCR;
+	volatile uint32_t SYSCFG_CFGR;
+
+}SYSCFG_RegDef_t;
+/***************SCB Register Definition ****************/
+#define SYSCFG ((SYSCFG_RegDef_t*)SYSCFG_BASE_ADDRESS)
+
+/***************EXTI Register Definition Structure****************/
+typedef struct{
+	volatile uint32_t EXTI_IMR;
+	volatile uint32_t EXTI_EMR;
+	volatile uint32_t EXTI_RTSR;
+	volatile uint32_t EXTI_FTSR;
+	volatile uint32_t EXTI_SWIER;
+	volatile uint32_t EXTI_PR;
+
+}EXTI_Reg_t;
+/***************EXTI Register Definition ****************/
+#define EXTI		((EXTI_Reg_t*)EXTI_BASE_ADDRESS)
 
 #endif
