@@ -13,7 +13,7 @@
 /***************APB1 Peripherals Base Addresses****************/
 
 /***************APB2 Peripherals Base Addresses****************/
-#define EXTI_BASE_ADDRESS					0x40013C00UL
+#define EXTI_BASE_ADDRESS					0x40013C00UL			/*EXTERNAL INTERRUPT BASE ADDRESS*/
 #define SYSCFG_BASE_ADDRESS					0x40013800UL
 
 /***************APB3 Peripherals Base Addresses****************/
@@ -31,11 +31,14 @@
 #define RCC_BASE_ADDRESS          			0x40023800UL      /*RESET AND CLOCK CONTROL BASE ADDRESS*/
 
 #define USB_OTG_HS_BASE_ADDRESS				0x40040000UL
-#define DMA2_BASE_ADDRESS					0x40026400UL
-#define DMA1_BASE_ADDRESS					0x40026000UL
+
+#define DMA2_BASE_ADDRESS					0x40026400UL		/*DIRECT MEMORY ACCESS 2 BASE ADDRESS*/
+#define DMA1_BASE_ADDRESS					0x40026000UL		/*DIRECT MEMORY ACCESS 1 BASE ADDRESS*/
+
 #define BKPSRAM_BASE_ADDRESS				0x40024000UL
 #define FLASH_I_R_BASE_ADDRESS				0x40023C00UL      /*FLASH INTERFACE REGISTER BASE ADDRESS*/
 #define CRC_BASE_ADDRESS					0x40023000UL	   /*CYCLIC REDUNDANCY CHECH BASE ADDRESS*/
+
 
 /***************AHB2 Peripherals Base Addresses****************/
 
@@ -193,5 +196,28 @@ typedef struct{
 }EXTI_Reg_t;
 /***************EXTI Register Definition ****************/
 #define EXTI		((EXTI_Reg_t*)EXTI_BASE_ADDRESS)
+/***************DMA Register Definition Structure****************/
+typedef struct{
+
+	volatile uint32_t DMA_SxCR;
+	volatile uint32_t DMA_SxNDTR;
+	volatile uint32_t DMA_SxPAR;
+	volatile uint32_t DMA_SxM0AR;
+	volatile uint32_t DMA_SxM1AR;
+	volatile uint32_t DMA_SxFCR;
+
+}DMA_StreamReg_t;
+typedef struct{
+
+	volatile uint32_t DMA_ISR[2];
+	volatile uint32_t DMA_IFCR[2];
+	
+	volatile DMA_StreamReg_t STREAM_REG[8];
+	
+}DMA_Reg_t;
+/***************DMA Register Definition ****************/
+#define DMA1 	((DMA_Reg_t*)DMA1_BASE_ADDRESS)
+#define DMA2	((DMA_Reg_t*)DMA2_BASE_ADDRESS)
+
 
 #endif
