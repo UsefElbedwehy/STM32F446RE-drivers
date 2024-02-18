@@ -1,21 +1,26 @@
 #ifndef  STM32F446XX_H_
 #define  STM32F446XX_H_ 
 /**************Core peripherals Base Addresses***************/
-#define	SYSTICK_BASE_ADDRESS		0xE000E010UL
-#define NVIC_BASE_ADDRESS 			0xE000E100UL			/*NESTED VECTOR INTERRUPT CONTROL BASE ADDRESS*/
-#define SCB_BASE_ADDRESS			0xE000E008UL			/*SYSTEM CONTROL BLOCK BASE ADDRESS*/
+#define	SYSTICK_BASE_ADDRESS				0xE000E010UL
+#define NVIC_BASE_ADDRESS 					0xE000E100UL	 /*NESTED VECTOR INTERRUPT CONTROL BASE ADDRESS*/
+#define SCB_BASE_ADDRESS					0xE000E008UL	 /*SYSTEM CONTROL BLOCK BASE ADDRESS*/
 
 /**************Various Memory Base Addresses***************/
-#define SRAM_BASE_ADRRESS  					0x20000000UL
-#define FLASH_BASE_ADRRESS 					0x08000000UL
-#define SYSTEM_MEMORY_BASE_ADRRESS 	  		0x1FFF0000UL
+#define SRAM_BASE_ADRRESS  					0x20000000UL	 /*STATIC RANDOM ACCESS MEMORY BASE ADDRESS*/
+#define FLASH_BASE_ADRRESS 					0x08000000UL	 /*FLASH BASE ADDRESS*/
+#define SYSTEM_MEMORY_BASE_ADRRESS 	  		0x1FFF0000UL	 /*SYSTEM MEMORY BASE ADDRESS*/
 
 /***************APB1 Peripherals Base Addresses****************/
-
+#define USART5_BASE_ADDRESS					0x40005000UL	 /*UNIVERSAL SYNCH/ASYNCH RECEIVER TRANSMITTER 5*/
+#define USART4_BASE_ADDRESS					0x40004C00UL	 /*UNIVERSAL SYNCH/ASYNCH RECEIVER TRANSMITTER 4*/
+#define USART3_BASE_ADDRESS					0x40004800UL	 /*UNIVERSAL SYNCH/ASYNCH RECEIVER TRANSMITTER 3*/
+#define USART2_BASE_ADDRESS					0x40004400UL	 /*UNIVERSAL SYNCH/ASYNCH RECEIVER TRANSMITTER 2*/
 /***************APB2 Peripherals Base Addresses****************/
-#define EXTI_BASE_ADDRESS					0x40013C00UL			/*EXTERNAL INTERRUPT BASE ADDRESS*/
-#define SYSCFG_BASE_ADDRESS					0x40013800UL
+#define EXTI_BASE_ADDRESS					0x40013C00UL	 /*EXTERNAL INTERRUPT BASE ADDRESS*/
+#define SYSCFG_BASE_ADDRESS					0x40013800UL	 /*SYSCFG BASE ADDRESS*/
 
+#define USART6_BASE_ADDRESS					0x40011400UL	 /*UNIVERSAL SYNCH/ASYNCH RECEIVER TRANSMITTER 6*/
+#define USART1_BASE_ADDRESS					0x40011000UL	 /*UNIVERSAL SYNCH/ASYNCH RECEIVER TRANSMITTER 1*/
 /***************APB3 Peripherals Base Addresses****************/
 
 /***************AHB1 Peripherals Base Addresses****************/
@@ -218,6 +223,23 @@ typedef struct{
 /***************DMA Register Definition ****************/
 #define DMA1 	((DMA_Reg_t*)DMA1_BASE_ADDRESS)
 #define DMA2	((DMA_Reg_t*)DMA2_BASE_ADDRESS)
+/***************USART Register Definition Structure****************/
+typedef struct{
 
+	volatile uint32_t USART_SR;
+	volatile uint32_t USART_DR;
+	volatile uint32_t USART_BRR;
+	volatile uint32_t USART_CR1;
+	volatile uint32_t USART_CR2;
+	volatile uint32_t USART_CR3;
+	volatile uint32_t USART_GTPR;
 
+}USART_Reg_t;
+/***************USART Register Definition ****************/
+#define USART1	((USART_Reg_t*)USART1_BASE_ADDRESS)
+#define USART2	((USART_Reg_t*)USART2_BASE_ADDRESS)
+#define USART3	((USART_Reg_t*)USART3_BASE_ADDRESS)
+#define USART4	((USART_Reg_t*)USART4_BASE_ADDRESS)
+#define USART5	((USART_Reg_t*)USART5_BASE_ADDRESS)
+#define USART6	((USART_Reg_t*)USART6_BASE_ADDRESS)
 #endif
