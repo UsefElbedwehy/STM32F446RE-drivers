@@ -242,4 +242,32 @@ typedef struct{
 #define USART4	((USART_Reg_t*)USART4_BASE_ADDRESS)
 #define USART5	((USART_Reg_t*)USART5_BASE_ADDRESS)
 #define USART6	((USART_Reg_t*)USART6_BASE_ADDRESS)
+
+/***************CRC Register Definition Structure****************/
+typedef struct{
+
+	volatile uint32_t CRC_DR;
+	volatile uint32_t CRC_IDR;
+	volatile uint32_t CRC_CR;
+
+}CRC_Reg_t;
+/***************CRC Register Definition ****************/
+#define CRC	((CRC_Reg_t*)CRC_BASE_ADDRESS)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #endif
