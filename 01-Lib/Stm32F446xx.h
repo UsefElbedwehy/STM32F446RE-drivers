@@ -7,7 +7,7 @@
 
 /**************Various Memory Base Addresses***************/
 #define SRAM_BASE_ADRRESS  					0x20000000UL	 /*STATIC RANDOM ACCESS MEMORY BASE ADDRESS*/
-#define FLASH_BASE_ADRRESS 					0x08000000UL	 /*FLASH BASE ADDRESS*/
+#define FLASH_BASE_ADDRESS 					0x08000000UL	 /*FLASH BASE ADDRESS*/
 #define SYSTEM_MEMORY_BASE_ADRRESS 	  		0x1FFF0000UL	 /*SYSTEM MEMORY BASE ADDRESS*/
 
 /***************APB1 Peripherals Base Addresses****************/
@@ -254,19 +254,21 @@ typedef struct{
 /***************CRC Register Definition ****************/
 #define CRC	((CRC_Reg_t*)CRC_BASE_ADDRESS)
 
+/***************FLASH Register Definition Structure****************/
+typedef struct{
+	
+	volatile uint32_t FLASH_ACR;
+	volatile uint32_t FLASH_KEYR;
+	volatile uint32_t FLASH_OPTKEYR;
+	volatile uint32_t FLASH_SR;
+	volatile uint32_t FLASH_CR;
+	volatile uint32_t FLASH_OPTCR;
+	
+}FLASH_Reg_t;
 
+/***************FLASH Register Definition ****************/
 
-
-
-
-
-
-
-
-
-
-
-
+#define _FLASH  ((FLASH_Reg_t*)FLASH_I_R_BASE_ADDRESS)
 
 
 
